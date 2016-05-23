@@ -1,0 +1,54 @@
+<?php
+/**
+ * @file
+ * Installation hooks for landingpage module.
+ */
+
+use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
+
+/**
+ * Implements hook_install().
+ */
+function landingpage_install() {
+  // Ensure the translation fields are created in the database.
+  \Drupal::service('entity.definition_update_manager')->applyUpdates();
+
+  // Create three paragraphs to structure the content.
+  $paragraph = Paragraph::create([
+    'title' => 'Paragraph 1',
+    'type' => 'landingpage_image_text',
+    'field_landingpage_text' => 'Palceholder text 1.',
+  ]);
+  $paragraph->save();
+
+  $paragraph2 = Paragraph::create([
+    'title' => 'Paragraph 2',
+    'type' => 'landingpage_image_text',
+    'field_landingpage_text' => 'Palceholder text 2.',
+  ]);
+  $paragraph2->save();
+
+  // Add demo content with two paragraphs.
+  $node = Node::create(array(
+    'type' => 'landingpage',
+    'title' => 'Welcome to the LandingPage Kit Demo!',
+    'langcode' => 'en',
+    'uid' => '0',
+    'status' => 1,
+    'field_paragraphs_landingpage_row' => array(
+      array(
+        'target_id' => $paragraph->id(),
+        'target_revision_id' => $paragraph->getRevisionId(),
+      ),
+      array(
+        'target_id' => $paragraph2->id(),
+        'target_revision_id' => $paragraph2->getRevisionId(),
+      ),
+    ),
+  ));
+  $node->save();
+
+  // Set the node as the front page.
+  \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/node/' . $node->id())->save();
+}

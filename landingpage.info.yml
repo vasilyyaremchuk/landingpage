@@ -1,0 +1,18 @@
+description: Paragraphs driven LandingPage Kit
+core: 8.x
+dependencies:
+  - paragraphs
+  - field
+  - image
+  - field_ui
+  - block
+  - language
+  - content_translation
+  - node
+  - entity_display_field
+  - slick
+  - blazy
+hidden: false
+name: LandingPage Kit
+package: Paragraphs
+type: module

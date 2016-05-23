@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: { }
+third_party_settings: { }
+name: Landingpage
+type: landingpage
+description: 'Content type for Paragraphs driven LandingPage Kit.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

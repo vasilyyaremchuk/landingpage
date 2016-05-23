@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_landingpage_display
+    - paragraphs.paragraphs_type.landingpage_image_text
+  module:
+    - entity_display_field
+id: paragraph.landingpage_image_text.field_landingpage_display
+field_name: field_landingpage_display
+entity_type: paragraph
+bundle: landingpage_image_text
+label: Display
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: entity_display_field_display
