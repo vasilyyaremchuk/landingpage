@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.subtitle
+    - field.field.paragraph.landingpage_text.field_landingpage_display
+    - field.field.paragraph.landingpage_text.field_landingpage_text
+    - paragraphs.paragraphs_type.landingpage_text
+  module:
+    - text
+id: paragraph.landingpage_text.subtitle
+targetEntityType: paragraph
+bundle: landingpage_text
+mode: subtitle
+content:
+  field_landingpage_text:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 128
+    third_party_settings: {  }
+    type: text_trimmed
+hidden:
+  created: true
+  field_landingpage_display: true
+  uid: true

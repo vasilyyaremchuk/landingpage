@@ -21,6 +21,7 @@ settings:
   handler_settings:
     target_bundles:
       landingpage_image_text: landingpage_image_text
+      landingpage_text: landingpage_text
     target_bundles_drag_drop:
       image_text:
         weight: 8
@@ -37,6 +38,9 @@ settings:
       text:
         weight: 12
         enabled: false
+      landingpage_text:
+        enabled: true
+        weight: 12
       text_image:
         weight: 13
         enabled: false

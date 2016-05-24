@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landingpage_text.field_landingpage_display
+    - field.field.paragraph.landingpage_text.field_landingpage_text
+    - paragraphs.paragraphs_type.landingpage_text
+  module:
+    - text
+id: paragraph.landingpage_text.default
+targetEntityType: paragraph
+bundle: landingpage_text
+mode: default
+content:
+  field_landingpage_text:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+hidden:
+  created: true
+  field_landingpage_display: true
+  uid: true

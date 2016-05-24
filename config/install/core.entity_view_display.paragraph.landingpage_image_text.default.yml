@@ -5,6 +5,7 @@ dependencies:
     - field.field.paragraph.landingpage_image_text.field_landingpage_display
     - field.field.paragraph.landingpage_image_text.field_landingpage_image
     - field.field.paragraph.landingpage_image_text.field_landingpage_text
+    - image.style.large
     - paragraphs.paragraphs_type.landingpage_image_text
   module:
     - image
@@ -16,18 +17,19 @@ mode: default
 content:
   field_landingpage_image:
     weight: 0
-    label: above
+    label: hidden
     settings:
-      image_style: ''
+      image_style: large
       image_link: ''
     third_party_settings: {  }
     type: image
   field_landingpage_text:
     weight: 1
-    label: above
-    settings: {  }
+    label: hidden
+    settings:
+      trim_length: 128
     third_party_settings: {  }
-    type: text_default
+    type: text_trimmed
 hidden:
   created: true
   field_landingpage_display: true

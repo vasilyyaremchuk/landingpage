@@ -1,11 +1,12 @@
 /**
  * @file
- * paragraph demo styles.
+ * lndingpage paragraphs styles.
  */
 
 /**
  * Float clearing, same as .clearfix.
  */
+
 .paragraph:after {
   content: "";
   display: table;
@@ -13,47 +14,54 @@
 }
 
 /**
- * 50/50 flex grid for image/text paragraph.
+ * image/text paragraph.
  */
-@media (min-width: 560px) {
-  .paragraph--type--image-text {
-    display: flex;
-    flex-flow: row wrap;
-  }
-  .paragraph--type--image-text .field-type-image {
-    flex: 1 1 0px;
-    margin: 0;
-  }
-  .paragraph--type--image-text .field-name-field-text-demo {
-    flex: 1 1 0px;
-  }
+
+.field--name-field-landingpage-row
+.paragraph--type--landingpage-image-text 
+.field--name-field-landingpage-image{
+  margin: 0;
 }
 
-/**
- * Flex row flow for images paragraph.
- */
-.paragraph--type--images .field-items {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.paragraph--type--landingpage-image-text.paragraph--view-mode--image-left 
+.field--name-field-landingpage-image{
+  float: left;
+  width: 50%;
 }
-.paragraph--type--images .field-item {
-  margin: 0 1em 1em 0;
+.paragraph--type--landingpage-image-text.paragraph--view-mode--image-right 
+.field--name-field-landingpage-image {
+  float: right;
+  width: 50%;
+}
+.paragraph--type--landingpage-image-text.paragraph--view-mode--image-left 
+.field--name-field-landingpage-text{
+  float: right;
+  width: 50%;
+}
+.paragraph--type--landingpage-image-text.paragraph--view-mode--image-right 
+.field--name-field-landingpage-text {
+  float: left;
+  width: 50%;
 }
 
-/**
- *50/50 flex grid for image/text paragraph.
- */
-@media (min-width: 560px) {
-  .paragraph--type--text-image {
-    display: flex;
-    flex-flow: row wrap;
-  }
-  .paragraph--type--text-image .field-name-field-text-demo {
-    flex: 1 1 0px;
-    margin: 0 1em 0 0;
-  }
-  .paragraph--type--text-image .field-type-image {
-    flex: 1 1 0px;
+.paragraph--type--landingpage-image-text.paragraph--view-mode--image-left 
+.field--name-field-landingpage-image img {
+  margin: 1em auto;
+  display: block;
+}
+.paragraph--type--landingpage-image-text.paragraph--view-mode--image-right 
+.field--name-field-landingpage-image img {
+  margin: 1em auto;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .paragraph--type--landingpage-image-text.paragraph--view-mode--image-left 
+  .field__item, 
+  .paragraph--type--landingpage-image-text.paragraph--view-mode--image-right 
+  .field__item {
+    float: none;
+    width: 100%;
+    clear: both;
   }
 }
