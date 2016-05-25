@@ -25,7 +25,8 @@ function landingpage_install() {
     'field_landingpage_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     'field_landingpage_image' => [
       'target_id' => $file->id(),
-    ],    
+    ],  
+    'field_landingpage_display' => 'image_left',
   ]);
   $paragraph->save();
 
@@ -39,8 +40,17 @@ function landingpage_install() {
     'field_landingpage_image' => [
       'target_id' => $file->id(),
     ], 
+    'field_landingpage_display' => 'image_right',
   ]);
   $paragraph2->save();
+
+  $paragraph3 = Paragraph::create([
+    'title' => 'Paragraph 3',
+    'type' => 'landingpage_text',
+    'field_landingpage_text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 
+    'field_landingpage_display' => 'subtitle',
+  ]);
+  $paragraph3->save();
 
   // Add demo content with two paragraphs.
   $node = Node::create(array(
@@ -58,6 +68,10 @@ function landingpage_install() {
         'target_id' => $paragraph2->id(),
         'target_revision_id' => $paragraph2->getRevisionId(),
       ),
+      array(
+        'target_id' => $paragraph3->id(),
+        'target_revision_id' => $paragraph3->getRevisionId(),
+      ),      
     ),
   ));
   $node->save();
