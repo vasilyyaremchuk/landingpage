@@ -10,8 +10,6 @@ dependencies:
   - content_translation
   - node
   - entity_display_field
-  - slick
-  - blazy
 hidden: false
 name: LandingPage Kit
 package: Paragraphs
