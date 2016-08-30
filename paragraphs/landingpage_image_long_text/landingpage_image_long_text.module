@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains landingpage_image_long_text.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function landingpage_image_long_text_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the landingpage_image_long_text module.
+    case 'help.page.landingpage_image_long_text':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Image+Long Text Paragraph Type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

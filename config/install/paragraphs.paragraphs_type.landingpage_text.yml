@@ -1,5 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: landingpage_text
-label: 'Landingpage Text'

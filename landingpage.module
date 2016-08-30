@@ -2,16 +2,111 @@
 
 /**
  * @file
- * Contains landingpage.module
+ * Contains landingpage.module..
  */
 
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Cache\Cache;
+
 /**
- * Implements hook_preprocess_node() for paragraph node templates.
- *
- * Attach css we need for Landingpage Kit.
+ * Implements hook_help().
  */
-function landingpage_preprocess_node(&$variables) {
-  if ($variables['node']->getType() === 'landingpage') {
-    $variables['#attached']['library'][] = 'landingpage/drupal.landingpage';
+function landingpage_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the landingpage module.
+    case 'help.page.landingpage':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Paragraphs driven LandingPage Kit') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_view_mode_alter().
+ *
+ * Over ride the display mode if the display field is populated.
+ */
+function landingpage_entity_view_mode_alter(&$view_mode, Drupal\Core\Entity\EntityInterface $entity, $context) {
+
+  $display_fields = \Drupal::entityManager()->getFieldMapByFieldType('paragraph_display_field_type');
+
+  // If display fields are present, swap the view mode.
+  if (!empty($display_fields)) {
+    foreach ($display_fields as $field_wrapper) {
+      foreach (array_keys($field_wrapper) as $field_name) {
+        if (!empty($entity->$field_name->value)) {
+          $view_mode = $entity->$field_name->value;
+          break;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function landingpage_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $skin_fields = \Drupal::entityManager()->getFieldMapByFieldType('paragraph_skin_field_type');
+  // If skin fields are present, add class = skin ID.
+  if (!empty($skin_fields)) {
+    foreach ($skin_fields as $field_wrapper) {
+      foreach (array_keys($field_wrapper) as $field_name) {
+        if (!empty($paragraph->$field_name->value)) {
+          $class = $paragraph->$field_name->value;
+          break;
+        }
+      }
+    }
+  } 
+  if (!empty($class)) {
+    $variables['attributes'] = new Attribute();
+    $variables['attributes']->addClass($class);
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function landingpage_page_attachments(array &$page) {
+
+    $modules = \Drupal::moduleHandler()->getModuleList();
+    $module_list = array_keys($modules);
+    sort($module_list);
+    $paragraphs = array();
+    $libraries = array();
+    foreach ($module_list as $module) {
+      if (strpos($module, $module_id[1]) !== false) {
+        $paragraphs[] = $module;
+        $library = \Drupal::service('library.discovery')->getLibrariesByExtension($module);
+        $option = array_keys($library);
+        foreach ($option as $op) {
+          $options[$op] = $op;
+        }
+      }
+    }
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if(!empty($node)) {
+  $paragraphs = $node->get('field_paragraphs')->referencedEntities();
+  $libraries = array();
+  foreach ($paragraphs as $paragraph) {
+    $type = $paragraph->get('type')->getValue()[0]['target_id'];
+    foreach ($module_list as $module) {
+      if (strpos($module, $type) !== false) {
+        $library = \Drupal::service('library.discovery')->getLibrariesByExtension($module);
+        $option = array_keys($library);
+        foreach ($option as $op) {
+          $libraries[$module . '/' . $op] = $module . '/' . $op;
+        }
+      }
+    }    
+  }
+  $page['#attached']['library'] = array_merge($page['#attached']['library'], $libraries);
   }
 }

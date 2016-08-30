@@ -1,0 +1,12 @@
+name: Landingpage Service
+type: theme
+description: Service theme that using in Landingpage module
+package: Paragraphs
+core: 8.x
+libraries:
+  - landingpage_service/global-styling
+
+base theme: stable
+
+regions:
+  content: Content

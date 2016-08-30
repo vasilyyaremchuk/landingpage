@@ -1,0 +1,7 @@
+name: LandingPage Image+Long Text Black Skin
+type: module
+description: White Skin for LandingPage Image+Long Text Paragraph
+core: 8.x
+package: Paragraphs
+dependencies:
+  - landingpage_image_long_text
